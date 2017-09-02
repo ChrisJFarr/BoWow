@@ -30,7 +30,7 @@ public class PostFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_post_fragment, container, false);
-        inputKey = (EditText) view.findViewById(R.id.input_value);
+        inputKey = (EditText) view.findViewById(R.id.input_key);
         inputValue = (EditText) view.findViewById(R.id.input_value);
         inputURL = (EditText) view.findViewById(R.id.input_url);
         buttonSendData = (Button) view.findViewById(R.id.btn_send_data);
@@ -66,8 +66,8 @@ public class PostFragment extends Fragment {
             @Override
             protected Map < String, String > getParams() {
                 Map < String, String > params = new HashMap < String, String > ();
-                params.put("name", pKey);
-                params.put("email", pValue);
+                params.put("key", pKey);
+                params.put("value", pValue);
 
                 return params;
             }

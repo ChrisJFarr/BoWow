@@ -55,7 +55,7 @@ public class GetFragment extends Fragment {
         /*if (pUrl.equals("")) {
             pUrl = "http://192.168.1.189/request.txt";
         }*/
-        pUrl = "http://192.168.1.189/request.txt";
+        pUrl = "http://192.168.1.189/request.json";
         JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, pUrl, null,
                 new Response.Listener < JSONObject > () {
                     @Override
