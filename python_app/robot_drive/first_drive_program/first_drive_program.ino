@@ -27,45 +27,19 @@ void setup() {
 
 }
 
-void loop() {  
-  // Fill incoming array with Serial.read()
-  while(Serial.available() >= 4){
-  // fill array
-  for(int i = 0; i < 4; i++){
-    incoming[i] = Serial.read();
-    }
-  }
-  
-  // Set travelSpeed
+void loop() {
+
+  // Fill incoming array
+  fillIncoming();
+
+  // Set travelSpeed with incoming[0] if there is a change
   if(incoming[0] != travelSpeed)
   {
     travelSpeed = incoming[0];
   }
-  
-  // Set direction
-  if(incoming[1] == 1)
-  {
-    driveForward();
-  } else
-  {
-    driveBackward();
-  }
 
-  // Set default travel speed for both sides
-  setRightSpeed(travelSpeed);
-  setLeftSpeed(travelSpeed);
-  
-  if(incoming[2]==0 && incoming[3]==1)
-  {
-    // If left = 0 and right = 1 then add speed to right, take from left
-    setRightSpeed(travelSpeed + 55);
-    setLeftSpeed(0);
-  } else if(incoming[2]==1 && incoming[3]==0)
-  {
-    // If left = 1 and right = 0 then add speed to left
-    setRightSpeed(0);
-    setLeftSpeed(travelSpeed + 55);
-  } else if(incoming[2]==0 && incoming[3]==2)
+  // Check for rotation, else set driving direction
+  if(incoming[2]==0 && incoming[3]==2)
   {
     // If left = 0 and right = 2 then rotate left
     rotateLeft();
@@ -77,9 +51,47 @@ void loop() {
     rotateRight();
     setLeftSpeed(255);
     setRightSpeed(255);
+  } else 
+  {
+    // Set default travel speed for both sides
+    setRightSpeed(travelSpeed);
+    setLeftSpeed(travelSpeed);
+    if(incoming[1] == 1)  // Set driving direction
+    {
+      driveForward();
+    } else
+    {
+      driveBackward();
+    }
   }
+  
+  if(incoming[2]==0 && incoming[3]==1)
+  {
+    // If left = 0 and right = 1 then add speed to right, take from left
+    setRightSpeed(travelSpeed + 55);
+    setLeftSpeed(0);
+  } else if(incoming[2]==1 && incoming[3]==0)
+  {
+    // If left = 1 and right = 0 then add speed to left
+    setRightSpeed(0);
+    setLeftSpeed(travelSpeed + 55);
+  } 
   delay(50);
 }
+
+void fillIncoming()
+{
+  // Fill incoming array with Serial.read()
+  while(Serial.available() >= 4)
+  {
+    // fill array with loop
+    for(int i = 0; i < 4; i++)
+    {
+      incoming[i] = Serial.read();
+    }
+  }
+}
+
 
 void rotateLeft()
 {
