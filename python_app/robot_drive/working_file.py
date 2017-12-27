@@ -90,12 +90,20 @@ class RobotDrive:
         
         return None
     
-##    def rotateLeft(self, seconds: float, speed: int):
-##        turn = [0, 2]
-##        
-##        
-##    
-##    def rotateDegrees(self, degrees: int, speed: int):
+    
+    def rotateLeft(self, seconds: float, speed: int):
+        turn = [0, 2]
+        self.sendInstructions(speed, turn)
+        sleep(seconds)
+        self.sendInstructions(0, [0, 0])
+        return None
+        
+    
+    def rotateDegrees(self, degrees: int, speed: int):
+        # convert degrees and speed to time
+        seconds = degrees / (speed * .5232)
+        self.rotateLeft(seconds, speed)
+        return None
         
     
     def keyboardControl(self, speed = 200):
@@ -146,24 +154,38 @@ if __name__ == "__main__":
     rd = RobotDrive()
     
     parser = argparse.ArgumentParser(description="Commands for robot")
-    parser.add_argument("-m", "--manual", action="store_true", help="Activate keyboard control with speed argument")
-    parser.add_argument("-t", "--time", type=int, metavar="", help="Set time in seconds")
-    parser.add_argument("-s", "--speed", type=int, help="Set speed between 0 and 255 inclusive")
-    parser.add_argument("-d", "--distance", type=float, help="Set driving distance in inches, requies also either time or speed")
+    # Manual control
+    parser.add_argument("-m", "--manual", action="store_true", help="Activate keyboard control, `--speed` required.")
+    
+    # Specific actions
+    parser.add_argument("-f", "--forward", action="store_true", help="Drive forward, `--speed` required, `-t` or `-d` required.")
+    parser.add_argument("-l", "--left", action="store_true", help="Rotate left, `--speed` required, `-t` or `-d` required.")
+    
+    # Supporting arguments
+    parser.add_argument("-t", "--time", type=float, metavar="", help="Set time in seconds.")
+    parser.add_argument("-s", "--speed", type=int, metavar="", help="Set motor speed between 0 and 255 inclusive.")
+    parser.add_argument("-d", "--distance", "--degrees", type=float, metavar="", help="Set driving distance in inches or rotation in degrees.")
     
     args = parser.parse_args()
     
     if args.manual and args.speed:
         rd.keyboardControl(args.speed)
-    elif args.speed and args.time:
-        rd.driveStraight(args.time, args.speed)
-    elif args.speed and args.distance:
-        rd.driveDistance(args.distance, args.speed)
+    elif args.forward:
+        assert args.speed, "Missing -s arg"
+        assert args.time or args.distance, "Need either -t or -s args, use -h to learn more."
+        if args.time:
+            rd.driveStraight(args.time, args.speed)
+        else:
+            rd.driveDistance(args.distance, args.speed)
+    elif args.left:
+        assert args.speed, "Missing -s arg"
+        assert args.time or args.distance, "Need either -t or -d args, use -h to learn more."
+        if args.time:
+            rd.rotateLeft(args.time, args.speed)
+        else:
+            rd.rotateDegrees(args.distance, args.speed)
     else:
         parser.print_help()
-
-
-
 
 
 
