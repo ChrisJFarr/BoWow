@@ -24,60 +24,60 @@ import argparse
 
 
 
-##rd = RobotDrive()
+rd = RobotDrive()
 
 # Program the planning parser
 # Take a plan using a default speed, parse and perform actions
 
-##plan = "flfffrfffrfff"
+plan = "flffrffrff"
 ##for move in list(plan):
 
-##actions = rd.actions()
+actions = rd.actions()
 
-##for action in plan:
-##    actions[action]()
+for action in plan:
+    actions[action]()
 
 
 # Planning algorithms
 
 # Breadth first search
 
-# Create representation for 4 x 5 grid, top right starting square
-rows = 4
-columns = 5
-grid = [[0 for r in range(rows)] for c in range(columns)]
-starting_location = (0, 4)
-def set_obstacle(loc):
-    grid[loc[0]][loc[1]] = "-"
-def set_goal(loc):
-    grid[loc[0]][loc[1]] = 1
-    
-# Obstacle 1
-obs1 = (0, 2)
-set_obstacle(obs1)
-# Obstacle 2
-obs2 = (1, 2)
-set_obstacle(obs2)
-# Obstacle 3
-obs3 = (2, 2)
-set_obstacle(obs3)
-# Set goal
-goal = (0, 0)
-set_goal(goal)
-
-# Represent obstacles and easily adapt
-# Create function for printing grid
-grid_print = ""
-for c in grid:
-    i = 0
-    for r in c:
-        i += 1
-        square = "| " + str(r) + " "
-        if i >= len(c):
-            square += "\n"
-        grid_print += square
-
-print(grid_print)
+### Create representation for 4 x 5 grid, top right starting square
+##rows = 4
+##columns = 5
+##grid = [[0 for r in range(rows)] for c in range(columns)]
+##starting_location = (0, 4)
+##def set_obstacle(loc):
+##    grid[loc[0]][loc[1]] = "-"
+##def set_goal(loc):
+##    grid[loc[0]][loc[1]] = 1
+##    
+### Obstacle 1
+##obs1 = (0, 2)
+##set_obstacle(obs1)
+### Obstacle 2
+##obs2 = (1, 2)
+##set_obstacle(obs2)
+### Obstacle 3
+##obs3 = (2, 2)
+##set_obstacle(obs3)
+### Set goal
+##goal = (0, 0)
+##set_goal(goal)
+##
+### Represent obstacles and easily adapt
+### Create function for printing grid
+##grid_print = ""
+##for c in grid:
+##    i = 0
+##    for r in c:
+##        i += 1
+##        square = "| " + str(r) + " "
+##        if i >= len(c):
+##            square += "\n"
+##        grid_print += square
+##
+##print(grid_print)
 
 
 # Create functions for moving player through world

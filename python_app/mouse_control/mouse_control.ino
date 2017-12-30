@@ -5,8 +5,8 @@ int incoming[3];
 int xPos=90; //declare initial position of the servo
 int yPos=175; //declare initial position of the servo
 int xServoPin = 9; //declare pin for the servo
-int yServoPin = 6; //declare pin for the servo
-int servoDelay = 1; //delay to allow the servo to reach position;
+int yServoPin = 10; //declare pin for the servo
+int servoDelay = 5; //delay to allow the servo to reach position;
 Servo xServo; // create a servo object called myServo
 Servo yServo; // create a servo object called myServo
 
@@ -20,12 +20,9 @@ void setup() {
 
 // the loop function runs over and over again forever
 void loop() {
-  // Fill incoming array with Serial.read()
-  while(Serial.available() >= 3){
-  // fill array
-  for(int i = 0; i < 3; i++){
-    incoming[i] = Serial.read();
-  }
+  
+  // Fill incoming array
+  fillIncoming();
 
   // Determine type of request and execute
   
@@ -75,6 +72,17 @@ void loop() {
 }
 
 
-
+void fillIncoming()
+{
+  // Fill incoming array with Serial.read()
+  while (Serial.available() >= 4)
+  {
+    // fill array with loop
+    for (int i = 0; i < 4; i++)
+    {
+      incoming[i] = Serial.read();
+    }
+  }
+}
 
 

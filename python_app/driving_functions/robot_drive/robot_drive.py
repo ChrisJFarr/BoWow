@@ -99,7 +99,7 @@ class RobotDrive:
             self._right = keyboard.is_pressed("Right") if not self._left else False
             # print([self.up, self.down, self.left, self.right])
             
-            if self.up or self._down:
+            if self._up or self._down:
                 if self._left or self._right:
                     turn = [int(not self._left), int(not self._right)]
                 if self._down:
