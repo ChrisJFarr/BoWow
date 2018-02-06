@@ -3,12 +3,13 @@ import serial
 import struct
 from time import sleep, time
 
+
 # Create robot drive class
 class RobotDrive:
     
     def __init__(self, default_speed=80):
         # Start the serial port to communicate with arduino
-        self.arduino = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+        self.arduino = serial.Serial('/dev/ttyS0', 9600, timeout=1)
         sleep(2)  # Must wait 2 seconds for arduino connection to fully initialize
         # Keyboard control support
         self._up = False
@@ -19,9 +20,10 @@ class RobotDrive:
         self._previous_turn = [0, 0]
         self._default_speed=default_speed
     
-##    def execute(plan: string):
+    # def execute(plan: string):
         # Take string input
-    def actions(self) -> dict:
+
+    def actions(self):  # ->
         action_dict = {"f": self.forward,
                        "b": self.backward,
                        "l": self.left,

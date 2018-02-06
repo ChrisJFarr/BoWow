@@ -22,8 +22,7 @@ if __name__ == "__main__":
     parser.add_argument("-d", "--distance", "--degrees", type=float, metavar="", help="Set driving distance in inches or rotation in degrees.")
     
     args = parser.parse_args()
-    
-    
+
     if args.manual and args.speed:
         rd.keyboardControl(args.speed)
     elif args.forward or args.backward:
