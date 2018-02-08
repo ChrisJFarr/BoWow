@@ -3,6 +3,7 @@
 * Mobile App
   * Contains all java code for Android application
 * Python App
-  * Contains all code for Arduino and Raspberry Pi
+  * cognition: planning and decision making
+  * mobility: robot motion
+  * vision: computer vision
  
-todo Add installation and testing instructions

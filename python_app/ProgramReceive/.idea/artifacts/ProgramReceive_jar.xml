@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="ProgramReceive:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/ProgramReceive_jar</output-path>
-    <root id="archive" name="ProgramReceive.jar">
-      <element id="module-output" name="ProgramReceive" />
-    </root>
-  </artifact>
-</component>
