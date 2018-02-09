@@ -11,7 +11,10 @@ class RobotDrive:
     def __init__(self, default_speed=80):
         # Start the serial port to communicate with arduino
         try:
-            self.arduino = serial.Serial('/dev/ttyS0', 9600, timeout=1)
+            try:
+                self.arduino = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+            except FileNotFoundError:
+                self.arduino = serial.Serial('/dev/ttyS0', 9600, timeout=1)
         except SerialException:
             self.arduino = serial.Serial('com3', 9600, timeout=1)
         sleep(2)  # Must wait 2 seconds for arduino connection to fully initialize
