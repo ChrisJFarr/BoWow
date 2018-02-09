@@ -4,7 +4,8 @@ from time import sleep
 
 if __name__ == "__main__":
 
-    ip = "192.168.56.1"
+    # ip = "192.168.56.1"  # Windows as server ip
+    ip = "192.168.1.201"  # Pi as server ip
     port = "5000"
     speed = 7
     prev_code = [0, 0, 0, 0, 0]  # Global variable for tracking changes
