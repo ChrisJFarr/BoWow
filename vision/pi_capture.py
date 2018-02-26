@@ -3,6 +3,8 @@ from time import sleep
 
 camera = picamera.PiCamera()
 
+dir(camera)
+
 # All camera settings with their default values
 camera.sharpness = 0
 camera.contrast = 0
@@ -31,5 +33,6 @@ sleep(5)
 camera.stop_recording()
 
 # Take picture
-## camera.capture('image.jpg')
+camera.capture('image.jpg')
 
+camera.capture_continuous()
