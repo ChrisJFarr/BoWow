@@ -13,7 +13,7 @@ app = FlaskAPI(__name__)
 def notes_list(code):
     # Code list object len 4
     code = [int(b) for b in code]
-    robot.codeControl(code)
+    robot.control(code)
     return "driving"
 
 

@@ -3,7 +3,7 @@
 #include "utility/Adafruit_MS_PWMServoDriver.h"
 #include <stdlib.h>     /* abs */
 
-// Create the Adafruit_MotorShiel object
+// Create the Adafruit_MotorShield object
 Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 
 // Request the DC motor from the Adafruit_MotorShield
@@ -12,12 +12,13 @@ Adafruit_DCMotor *backLeftMotor = AFMS.getMotor(2);
 Adafruit_DCMotor *frontRightMotor = AFMS.getMotor(3);
 Adafruit_DCMotor *backRightMotor = AFMS.getMotor(4);
 
-// Movement support/ communication
+// Movement support and communication
 int incoming[4];
 int wheelSpeed = 0;
 int travelDirection = 1;
 
-void setup() {
+void setup()
+{
   Serial.begin(9600); //start serial port
   // put your setup code here, to run once:
   // Call begin on the AFMS object
@@ -27,8 +28,8 @@ void setup() {
   setRightSpeed(0);
 }
 
-void loop() {
-
+void loop()
+{
   // Fill incoming array
   fillIncoming();
 
