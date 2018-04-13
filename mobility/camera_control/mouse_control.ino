@@ -6,7 +6,7 @@ int xPos=90; //declare initial position of the servo
 int yPos=175; //declare initial position of the servo
 int xServoPin = 9; //declare pin for the servo
 int yServoPin = 10; //declare pin for the servo
-int servoDelay = 5; //delay to allow the servo to reach position;
+int SERVO_DELAY = 5; //delay to allow the servo to reach position;
 Servo xServo; // create a servo object called myServo
 Servo yServo; // create a servo object called myServo
 
@@ -45,26 +45,26 @@ void loop() {
 
     while(newXPos > xPos){
       xServo.write(xPos); //write the position into the servo
-      delay(servoDelay); //give time to the servo to reach the position
+      delay(SERVO_DELAY); //give time to the servo to reach the position
       xPos += 1;
     }
 
      while(newXPos < xPos){
       xServo.write(xPos); //write the position into the servo
-      delay(servoDelay); //give time to the servo to reach the position
+      delay(SERVO_DELAY); //give time to the servo to reach the position
       xPos -= 1;
     }
 
     // Tilt up/down
     while(newYPos > yPos){
       yServo.write(yPos); //write the position into the servo
-      delay(servoDelay); //give time to the servo to reach the position
+      delay(SERVO_DELAY); //give time to the servo to reach the position
       yPos += 1;
     }
     
     while(newYPos < yPos){
       yServo.write(yPos); //write the position into the servo
-      delay(servoDelay); //give time to the servo to reach the position
+      delay(SERVO_DELAY); //give time to the servo to reach the position
       yPos -= 1;
     }
   }
